@@ -42,4 +42,14 @@ while true; do
   fi
   # Increment the number of guesses
   ((number_of_guesses++))
+
+  # Check if the guess is correct
+  if (( guess < secret_number )); then
+    echo "It's higher than that, guess again:"
+  elif (( guess > secret_number )); then
+    echo "It's lower than that, guess again:"
+  else
+    # Correct guess
+    
+  fi
 done
