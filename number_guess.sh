@@ -40,5 +40,6 @@ while true; do
     echo "That is not an integer, guess again:"
     continue
   fi
-  
+  # Increment the number of guesses
+  ((number_of_guesses++))
 done
