@@ -54,7 +54,7 @@ while true; do
 
     # Update the user's game statistics
     update_query="UPDATE users SET games_played = games_played + 1, best_game = LEAST(COALESCE(best_game, $number_of_guesses), $number_of_guesses) WHERE username = '$escaped_username';"
-    $PSQL "$update_query"
+    result=$($PSQL "$update_query")
     break
   fi
 done
