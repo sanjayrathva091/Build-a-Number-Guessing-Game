@@ -12,3 +12,20 @@ secret_number=$(( RANDOM % 1000 + 1 ))
 
 # Escape single quotes in the username for SQL queries
 escaped_username=$(echo "$username" | sed "s/'/''/g")
+
+# Check if the user exists in the database
+user_exists=$($PSQL "SELECT username FROM users WHERE username='$escaped_username'")
+
+if [[ -z $user_exists ]]; then
+  # If the user doesn't exist, insert them into the database
+  insert_result=$($PSQL "INSERT INTO users(username, games_played, best_game) VALUES('$escaped_username', 0, NULL)")
+  echo "Welcome, $username! It looks like this is your first time here."
+else
+  # If the user exists, retrieve their game statistics
+  
+fi
+
+
+# Start the guessing game
+number_of_guesses=0
+echo "Guess the secret number between 1 and 1000:"
